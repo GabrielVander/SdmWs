@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.pages.Greeting
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.pages.MainPage
 import br.edu.ifsp.aluno.vander.gabriel.sdmws.ui.theme.SdmWsTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    MainPage()
                 }
             }
         }
