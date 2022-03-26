@@ -1,12 +1,10 @@
 package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.pages
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,7 +20,6 @@ import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.widgets.SubjectD
 fun MainPage(mainViewModel: MainViewModel = viewModel()) {
     val course: Course? by mainViewModel.course.observeAsState()
     val subjects: List<Subject>? by mainViewModel.subjects.observeAsState()
-    var chosenSemester: Int? by remember { mutableStateOf(null) }
 
     mainViewModel.fetchCourse()
 
@@ -33,14 +30,25 @@ fun MainPage(mainViewModel: MainViewModel = viewModel()) {
             Column(modifier = Modifier) {
                 CourseDisplay(course!!)
                 Spacer(modifier = Modifier.height(15.dp))
-                SemesterDropDown(
-                    course!!.amountOfSemesters,
-                    onSemesterChosen = { chosenSemester = it }
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                ) {
+                    SemesterDropDown(
+                        course!!.amountOfSemesters,
+                        onSemesterChosen = { semesterNumber ->
+                            mainViewModel.fetchSubjectsForSemester(semesterNumber)
+                        }
+                    )
+                }
                 Spacer(modifier = Modifier.height(15.dp))
-                if (chosenSemester != null) {
-                    mainViewModel.fetchSubjectsForSemester(chosenSemester!!)
-                    SubjectDropDown(subjects)
+                if (subjects != null) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center,
+                    ) {
+                        SubjectDropDown(subjects!!)
+                    }
                 }
             }
         }

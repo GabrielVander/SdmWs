@@ -1,4 +1,4 @@
-package br.edu.ifsp.aluno.vander.gabriel.sdmws.ui.theme
+package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

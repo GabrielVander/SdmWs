@@ -8,7 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.pages.MainPage
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.ui.theme.SdmWsTheme
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.theme.SdmWsTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
