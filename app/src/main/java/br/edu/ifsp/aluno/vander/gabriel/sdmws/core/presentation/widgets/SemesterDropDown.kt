@@ -7,7 +7,8 @@ import androidx.compose.runtime.*
 
 @Composable
 fun SemesterDropDown(
-    amountOfSemesters: Int
+    amountOfSemesters: Int,
+    onSemesterChosen: (chosenSemester: Int) -> Unit = {}
 ) {
     var expanded: Boolean by remember { mutableStateOf(false) }
     var chosenSemester: String? by remember { mutableStateOf(null) }
@@ -26,8 +27,9 @@ fun SemesterDropDown(
     ) {
         semesters.forEach { semesterNumber ->
             DropdownMenuItem(onClick = {
-                expanded = false
                 chosenSemester = semesterNumber.toString()
+                onSemesterChosen(semesterNumber)
+                expanded = false
             }) {
                 Text(text = semesterNumber.toString())
             }
