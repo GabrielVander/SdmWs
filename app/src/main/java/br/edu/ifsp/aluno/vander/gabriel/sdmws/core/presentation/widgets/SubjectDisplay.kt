@@ -8,10 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.entities.Course
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.entities.Subject
 
 @Composable
-fun CourseDisplay(course: Course) {
+fun SubjectDisplay(
+    subject: Subject,
+) {
     Column(
         modifier = Modifier
             .border(
@@ -22,10 +24,10 @@ fun CourseDisplay(course: Course) {
             .padding(5.dp)
     ) {
         Title()
-        Name(course.name)
-        Tag(course.tag)
-        Workload(course.workloadInHours)
-        Semesters(course.amountOfSemesters)
+        Name(subject.name)
+        Tag(subject.tag)
+        Workload(subject.workloadInHours)
+        Classes(subject.amountOfClasses)
     }
 }
 
@@ -35,7 +37,7 @@ private fun Title() {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
     ) {
-        Text(text = "Course", fontSize = 21.sp)
+        Text(text = "Subject", fontSize = 21.sp)
     }
 }
 
@@ -64,9 +66,9 @@ private fun Workload(workloadInHours: Int) {
 }
 
 @Composable
-private fun Semesters(amountOfSemesters: Int) {
+private fun Classes(amountOfClasses: Int) {
     Row {
-        Text(text = "Amount of semesters: ")
-        Text(text = amountOfSemesters.toString())
+        Text(text = "Amount of classes: ")
+        Text(text = amountOfClasses.toString())
     }
 }

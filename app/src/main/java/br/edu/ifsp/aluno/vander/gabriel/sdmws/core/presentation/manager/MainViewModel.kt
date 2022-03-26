@@ -19,6 +19,9 @@ class MainViewModel : ViewModel() {
     private val _subjects: MutableLiveData<List<Subject>> = MutableLiveData()
     val subjects: LiveData<List<Subject>> = _subjects
 
+    private val _chosenSubject: MutableLiveData<Subject> = MutableLiveData()
+    val chosenSubject: LiveData<Subject> = _chosenSubject
+
     fun fetchCourse() {
         val course: Course = getCourseUseCase.execute()
         _course.value = course
@@ -27,6 +30,10 @@ class MainViewModel : ViewModel() {
     fun fetchSubjectsForSemester(semesterNumber: Int) {
         val subjects: List<Subject> = getSubjectsForSemesterUseCase.execute(semesterNumber)
         _subjects.value = subjects
+    }
+
+    fun setChosenSubject(subject: Subject) {
+        _chosenSubject.value = subject
     }
 
 }

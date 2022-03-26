@@ -6,6 +6,7 @@ import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.entities.Subject
 @Composable
 fun SubjectDropDown(
     subjects: List<Subject>,
+    onSubjectSelected: (subject: Subject) -> Unit = {},
 ) {
     var chosenSubject: String? by remember { mutableStateOf(null) }
 
@@ -15,6 +16,7 @@ fun SubjectDropDown(
         buildItemLabel = { it.tag },
         onItemSelected = {
             chosenSubject = it.tag
+            onSubjectSelected(it)
         }
     )
 }
