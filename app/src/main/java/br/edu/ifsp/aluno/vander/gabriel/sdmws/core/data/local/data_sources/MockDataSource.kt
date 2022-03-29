@@ -1,7 +1,7 @@
-package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.data_sources
+package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.local.data_sources
 
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.models.CourseModel
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.models.SubjectModel
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.remote.models.CourseModel
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.remote.models.SubjectModel
 
 class MockDataSource {
     private val course: CourseModel = CourseModel(

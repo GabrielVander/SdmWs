@@ -9,7 +9,7 @@ class GetCourseUseCase(
         .build()
 ) {
 
-    fun execute(): Course {
+    suspend fun execute(): Course? {
         return courseRepository.getCourse()
     }
 }

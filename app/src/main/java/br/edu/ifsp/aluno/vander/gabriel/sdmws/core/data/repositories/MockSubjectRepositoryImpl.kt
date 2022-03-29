@@ -1,7 +1,7 @@
 package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.repositories
 
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.data_sources.MockDataSource
-import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.models.SubjectModel
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.local.data_sources.MockDataSource
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.remote.models.SubjectModel
 import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.entities.Subject
 import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.repositories.SubjectRepository
 

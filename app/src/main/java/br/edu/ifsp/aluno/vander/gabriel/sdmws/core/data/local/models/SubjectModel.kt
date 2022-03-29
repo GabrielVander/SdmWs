@@ -1,4 +1,4 @@
-package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.models
+package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.local.models
 
 data class SubjectModel(
     val name: String,
