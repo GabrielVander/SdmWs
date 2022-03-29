@@ -9,7 +9,7 @@ class GetSubjectsForSemesterUseCase(
         .build()
 ) {
 
-    fun execute(semesterNumber: Int): List<Subject> {
+    suspend fun execute(semesterNumber: Int): List<Subject>? {
         return subjectRepository.getSubjectsForSemester(semesterNumber)
     }
 

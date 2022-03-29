@@ -20,10 +20,6 @@ capp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widg
 §
 wapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/domain/repositories/factories/SubjectRepositoryFactory.kt,3\5\35a72d15e66b387623640a8a6ba5ad3947b1e444
 –
-fapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/domain/repositories/SubjectRepository.kt,4\9\4975ac80a8c92cce1872e53bae8959bfbd2e4f7c
-Ÿ
-oapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/domain/use_cases/GetSubjectsForSemesterUseCase.kt,d\8\d81643fd963cb8322a19bd89f4d5fa03e84e538c
-–
 fapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/SemesterDropDown.kt,5\9\5960b46e0206182b1b67bbf8d765f23326409833
 •
 eapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/SubjectDropDown.kt,1\b\1b1e0976cbc9b4d9a217b3092ae90c8df074d9a2

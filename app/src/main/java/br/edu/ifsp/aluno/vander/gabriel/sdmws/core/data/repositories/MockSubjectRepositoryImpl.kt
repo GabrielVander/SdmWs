@@ -8,7 +8,7 @@ import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.repositories.SubjectRe
 class MockSubjectRepositoryImpl(
     private val mockDataSource: MockDataSource = MockDataSource()
 ) : SubjectRepository {
-    override fun getSubjectsForSemester(semesterNumber: Int): List<Subject> {
+    override suspend fun getSubjectsForSemester(semesterNumber: Int): List<Subject> {
         val subjectsForSemester: List<SubjectModel> =
             mockDataSource.getSubjectsForSemester(semesterNumber)
         return subjectsForSemester.map(this::toEntity)

@@ -29,16 +29,20 @@ class MainViewModel : ViewModel() {
 
     fun fetchCourse() {
         coroutineScope.launch {
-            val course: Course? = getCourseUseCase.execute()
-            if (course != null) {
-                _course.postValue(course!!)
-            }
+            getCourseUseCase.execute()
+                .also {
+                    _course.postValue(it)
+                }
         }
     }
 
     fun fetchSubjectsForSemester(semesterNumber: Int) {
-        val subjects: List<Subject> = getSubjectsForSemesterUseCase.execute(semesterNumber)
-        _subjects.value = subjects
+        coroutineScope.launch {
+            getSubjectsForSemesterUseCase.execute(semesterNumber)
+                .also {
+                    _subjects.postValue(it)
+                }
+        }
     }
 
     fun setChosenSubject(subject: Subject) {

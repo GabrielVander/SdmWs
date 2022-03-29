@@ -4,6 +4,6 @@ import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.entities.Subject
 
 interface SubjectRepository {
 
-    fun getSubjectsForSemester(semesterNumber: Int): List<Subject>
+    suspend fun getSubjectsForSemester(semesterNumber: Int): List<Subject>?
 
 }
