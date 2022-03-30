@@ -8,7 +8,7 @@ import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.domain.repositories.SubjectRe
 
 class SubjectRepositoryFactory {
     fun build(): SubjectRepository {
-        if (Constants.ENV == Environment.REMOTE) {
+        if (Constants.ENV == Environment.REMOTE_RETROFIT) {
             return RetrofitSubjectRepositoryImpl()
         }
         return MockSubjectRepositoryImpl()

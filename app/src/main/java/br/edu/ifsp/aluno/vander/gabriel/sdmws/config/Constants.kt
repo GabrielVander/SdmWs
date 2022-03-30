@@ -7,5 +7,5 @@ object Constants {
     const val COURSE_ENDPOINT: String = "curso"
     const val SEMESTER_PATH_VARIABLE_NAME: String = "semesterNumber"
     const val SEMESTER_ENDPOINT: String = "semestre/{$SEMESTER_PATH_VARIABLE_NAME}"
-    val ENV: Environment = Environment.REMOTE
+    val ENV: Environment = Environment.REMOTE_VOLLEY
 }
