@@ -24,6 +24,9 @@ class MainViewModel : ViewModel() {
     private val _subjects: MutableLiveData<List<Subject>> = MutableLiveData()
     val subjects: LiveData<List<Subject>> = _subjects
 
+    private val _isLoadingSubjects: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isLoadingSubjects: LiveData<Boolean> = _isLoadingSubjects
+
     private val _chosenSubject: MutableLiveData<Subject> = MutableLiveData()
     val chosenSubject: LiveData<Subject> = _chosenSubject
 
@@ -37,10 +40,13 @@ class MainViewModel : ViewModel() {
     }
 
     fun fetchSubjectsForSemester(semesterNumber: Int) {
+        _isLoadingSubjects.value = true
+
         coroutineScope.launch {
             getSubjectsForSemesterUseCase.execute(semesterNumber)
                 .also {
                     _subjects.postValue(it)
+                    _isLoadingSubjects.postValue(false)
                 }
         }
     }

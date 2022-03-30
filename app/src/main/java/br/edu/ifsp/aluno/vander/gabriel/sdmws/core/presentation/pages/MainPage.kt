@@ -1,8 +1,8 @@
 package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.pages
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -20,42 +20,59 @@ import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.presentation.widgets.SubjectD
 @Composable
 fun MainPage(mainViewModel: MainViewModel = viewModel()) {
     val course: Course? by mainViewModel.course.observeAsState()
-    val subjects: List<Subject>? by mainViewModel.subjects.observeAsState()
-    val chosenSubject: Subject? by mainViewModel.chosenSubject.observeAsState()
 
     mainViewModel.fetchCourse()
 
     Scaffold(modifier = Modifier.padding(15.dp)) {
-        RenderContent(course, mainViewModel, subjects, chosenSubject)
+        RenderContent(mainViewModel, course)
     }
 }
 
 @Composable
 private fun RenderContent(
-    course: Course?,
     mainViewModel: MainViewModel,
-    subjects: List<Subject>?,
-    chosenSubject: Subject?
+    course: Course?,
 ) {
-    if (course == null) {
-        Text(text = "Loading...")
-    } else {
-        Column(modifier = Modifier) {
-            CourseDisplay(course)
-            RenderSemesterDropDown(course, mainViewModel)
-            ShouldRenderSubjectDropDown(
-                subjects = subjects,
-                onSubjectSelected = { mainViewModel.setChosenSubject(it) },
+    Column(modifier = Modifier) {
+        if (course == null) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+            ) {
+                CircularProgressIndicator()
+            }
+        } else {
+            Content(
+                mainViewModel,
+                course
             )
-            ShouldRenderSubjectDisplay(chosenSubject)
         }
     }
 }
 
 @Composable
+private fun Content(
+    mainViewModel: MainViewModel,
+    course: Course
+) {
+    val subjects: List<Subject>? by mainViewModel.subjects.observeAsState()
+    val chosenSubject: Subject? by mainViewModel.chosenSubject.observeAsState()
+    val isLoadingSubjects: Boolean? by mainViewModel.isLoadingSubjects.observeAsState()
+
+    CourseDisplay(course)
+    RenderSemesterDropDown(mainViewModel, course)
+    ShouldRenderSubjectDropDown(
+        subjects = subjects,
+        isLoading = isLoadingSubjects ?: false,
+        onSubjectSelected = { mainViewModel.setChosenSubject(it) },
+    )
+    ShouldRenderSubjectDisplay(chosenSubject)
+}
+
+@Composable
 private fun RenderSemesterDropDown(
-    course: Course,
-    mainViewModel: MainViewModel
+    mainViewModel: MainViewModel,
+    course: Course
 ) {
     Spacer(modifier = Modifier.height(15.dp))
     Row(
@@ -82,18 +99,22 @@ private fun ShouldRenderSubjectDisplay(chosenSubject: Subject?) {
 @Composable
 private fun ShouldRenderSubjectDropDown(
     subjects: List<Subject>?,
+    isLoading: Boolean = false,
     onSubjectSelected: (subject: Subject) -> Unit = {}
 ) {
-    if (subjects != null) {
-        Spacer(modifier = Modifier.height(15.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-        ) {
+    Spacer(modifier = Modifier.height(15.dp))
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center,
+    ) {
+        if (subjects != null && !isLoading) {
             SubjectDropDown(
                 subjects,
                 onSubjectSelected,
             )
+        } else if (isLoading) {
+            CircularProgressIndicator()
         }
     }
+
 }

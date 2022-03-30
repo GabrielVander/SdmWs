@@ -19,13 +19,7 @@ Happ/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/MainActivity.kt,f\f\f
 capp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/CourseDisplay.kt,0\a\0a76689a985e258eefc4812c32d2577789d79edd
 –
 fapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/SemesterDropDown.kt,5\9\5960b46e0206182b1b67bbf8d765f23326409833
-•
-eapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/SubjectDropDown.kt,1\b\1b1e0976cbc9b4d9a217b3092ae90c8df074d9a2
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 Ž
 ^app/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/Dropdown.kt,3\5\358fb728f6588299b047becb3288baf76e269d88
-Œ
-\app/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/pages/MainPage.kt,1\6\16f4e69829ed1c464811d6cba3ff01d04f0b9e33
-”
-dapp/src/main/java/br/edu/ifsp/aluno/vander/gabriel/sdmws/core/presentation/widgets/SubjectDisplay.kt,e\a\ea03cd53f1d3c4e8655fef9379d7d765794bd4a3
