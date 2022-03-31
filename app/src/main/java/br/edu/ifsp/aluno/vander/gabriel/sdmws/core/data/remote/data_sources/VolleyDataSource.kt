@@ -1,14 +1,14 @@
 package br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.remote.data_sources
 
+import android.util.Log
 import br.edu.ifsp.aluno.vander.gabriel.sdmws.config.Constants
 import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.remote.models.CourseModel
+import br.edu.ifsp.aluno.vander.gabriel.sdmws.core.data.remote.models.SubjectModel
 import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.toolbox.BasicNetwork
-import com.android.volley.toolbox.HurlStack
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.NoCache
+import com.android.volley.toolbox.*
 import com.google.gson.Gson
+import org.json.JSONObject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -38,10 +38,52 @@ class VolleyDataSource {
                         )
                     }
                 },
-                { continuation.resume(null) }
+                { error ->
+                    Log.d(
+                        "VolleyDataSource",
+                        "getCourse: $error"
+                    )
+                    continuation.resume(null)
+                }
             )
 
             requestQueue.add(jsonObjectRequest)
+        }
+    }
+
+    suspend fun getSubjectsForSemester(semester: Int): List<SubjectModel>? {
+        return suspendCoroutine { continuation ->
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                Constants.BASE_URL + Constants.SEMESTER_ENDPOINT + "/" + semester.toString(),
+                null,
+                { response ->
+                    response?.also { semesterJsonArray ->
+                        val gson = Gson()
+
+                        val subjects: MutableList<SubjectModel> = mutableListOf()
+                        for (index in 0 until semesterJsonArray.length()) {
+                            val subjectJsonObject: JSONObject =
+                                semesterJsonArray.getJSONObject(index)
+                            val subjectModel = gson.fromJson(
+                                subjectJsonObject.toString(),
+                                SubjectModel::class.java
+                            )
+                            subjects.add(subjectModel)
+                        }
+                        continuation.resume(subjects)
+                    }
+                },
+                { error ->
+                    Log.d(
+                        "VolleyDataSource",
+                        "getSubjectsForSemester: $error"
+                    )
+                    continuation.resume(null)
+                }
+            )
+
+            requestQueue.add(jsonArrayRequest)
         }
     }
 }

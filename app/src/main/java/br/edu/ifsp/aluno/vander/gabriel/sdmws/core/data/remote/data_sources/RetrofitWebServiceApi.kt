@@ -12,7 +12,7 @@ interface RetrofitWebServiceApi {
     @GET(Constants.COURSE_ENDPOINT)
     suspend fun getCourse(): Response<CourseModel>
 
-    @GET(Constants.SEMESTER_ENDPOINT)
+    @GET(Constants.SEMESTER_ENDPOINT_WITH_PATH_VARIABLE)
     suspend fun getSubjectsForSemester(
         @Path(Constants.SEMESTER_PATH_VARIABLE_NAME) semesterNumber: Int
     ): Response<List<SubjectModel>>
